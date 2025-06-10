@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subramanian S | Portfolio</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="intro">
+        <h1>Subramanian.S</h1>
+        <p class="tagline">Aspiring ML Engineer | GNN Enthusiast</p>
+      </div>
+      <div class="right-side">
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/s-subramanian-3660bb301" target="_blank"><img src="in.png" alt="LinkedIn"></a>
+          <a href="https://leetcode.com/u/sri_2005/" target="_blank"><img src="Leetcode.jpg" alt="LeetCode"></a>
+          <a href="https://github.com/Subramani2005" target="_blank"><img src="github.jpeg" alt="GitHub"></a>
+        </div>
+        <button id="toggle-btn" class="toggle-btn">🌙</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>About Me</h2>
+      <p>
+        Motivated and detail-oriented aspiring Machine Learning Engineer with a strong grasp of core ML/DL concepts, data structures, and algorithmic problem-solving. Learning to build end-to-end machine learning pipelines and hands-on with modern frameworks such as TensorFlow, PyTorch, Scikit-learn, and NetworkX for graph-based modeling. Currently developing a credit card fraud detection system using Graph Neural Networks, with a keen interest in deploying real-time, scalable AI solutions via Flask and cloud tools.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Educational Qualifications</h2>
+      <ul class="edu-list">
+        <li>
+          <h3>Class 12: <span class="highlight">93.4%</span></h3>
+          <p>Maharishi Vidya Mandir Sr. Sec. School, HOSUR - 635126.</p>
+        </li>
+        <li>
+          <h3>Bachelor of Technology, Information Technology</h3>
+          <p>Aug 2023 – Aug 2027</p>
+          <p>SASTRA University, Tanjore campus-613401</p>
+          <p>CGPA: <span class="highlight">9.0580</span> (as of 3rd semester)</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Skills</h2>
+      <ul>
+        <li><strong>Programming Languages:</strong> C, C++, JAVA, Python, SQL</li>
+        <li><strong>Tools & Technologies:</strong> Microsoft Power BI, Web Development</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Sentiment Analyzer</h3>
+        <p>
+          A basic sentiment analyzer classifying IMDB reviews as positive or negative using Multinomial Naive Bayes and TF-IDF vectorizer.
+        </p>
+        <a href="https://first-app-for-sentiment-analysis.onrender.com" target="_blank" class="btn">View Project</a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const btn = document.getElementById('toggle-btn');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
