@@ -51,7 +51,6 @@ body {
 }
 
 .social-icons img:hover {
-    box-shadow: red;
   transform: scale(1.1);
 }
 
@@ -69,7 +68,6 @@ body {
   background: hsl(0, 0%, 2%);
 }
 
-/* CARDS */
 .card {
   background: #fff;
   margin-bottom: 20px;
@@ -115,6 +113,35 @@ body {
 .highlight {
   color: #27ae60;
   font-weight: bold;
+}
+
+/* Certifications */
+.certification {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.certification img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+.certification-content {
+  flex: 1;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .certification {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .certification img {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /* DARK MODE */
