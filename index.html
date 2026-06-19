@@ -3,77 +3,432 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Subramanian S | Portfolio</title>
-  <link rel="stylesheet" href="./main.css" />
+  <title>Subramanian S | AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --accent: #1a56db;
+      --accent-light: #eff6ff;
+      --text: #111827;
+      --muted: #6b7280;
+      --tag-bg: #f1f5f9;
+      --tag-text: #334155;
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --border: #334155;
+      --accent: #60a5fa;
+      --accent-light: #1e3a5f;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --tag-bg: #1e293b;
+      --tag-text: #cbd5e1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.2s, color 0.2s;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .name-block h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .name-block p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 6px;
+    }
+    .social-icons { display: flex; gap: 10px; }
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .social-icons a:hover { border-color: var(--accent); color: var(--accent); }
+    .toggle-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--muted);
+      transition: border-color 0.15s;
+    }
+    .toggle-btn:hover { border-color: var(--accent); }
+
+    /* MAIN */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* SECTION */
+    section { display: flex; flex-direction: column; gap: 16px; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    /* ABOUT */
+    .about-text { color: var(--muted); font-size: 0.97rem; max-width: 680px; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .skill-card h4 { font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .skill-card p { font-size: 0.9rem; color: var(--text); }
+
+    /* PROJECTS */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      transition: border-color 0.15s;
+    }
+    .project-card:hover { border-color: var(--accent); }
+    .project-card .proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .project-card h3 { font-size: 1.05rem; font-weight: 600; }
+    .project-card .proj-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+    .project-card p { font-size: 0.9rem; color: var(--muted); margin-bottom: 12px; }
+    .project-card ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .project-card ul li { font-size: 0.88rem; color: var(--muted); padding-left: 16px; position: relative; }
+    .project-card ul li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 9px;
+      border-radius: 5px;
+    }
+    .badge {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+    .project-links { display: flex; gap: 10px; margin-top: 14px; }
+    .btn-link {
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 5px 13px;
+      border: 1px solid var(--accent);
+      border-radius: 7px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-link:hover { background: var(--accent); color: #fff; }
+
+    /* EDUCATION */
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .edu-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+    .edu-card p { font-size: 0.87rem; color: var(--muted); }
+    .cgpa { font-size: 1.3rem; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+
+    /* CERTIFICATIONS */
+    .cert-list { display: flex; flex-direction: column; gap: 10px; }
+    .cert-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cert-item span { font-size: 0.92rem; font-weight: 500; }
+    .cert-item a {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .cert-item a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 16px; }
+      .edu-card { flex-direction: column; gap: 8px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <div class="intro">
-        <h1>Subramanian.S</h1>
-        <p class="tagline">Aspiring ML Engineer | GNN Enthusiast</p>
-      </div>
-      <div class="right-side">
-        <div class="social-icons">
-          <a href="https://www.linkedin.com/in/s-subramanian-3660bb301" target="_blank"><img src="./in.png" alt="LinkedIn"></a>
-          <a href="https://leetcode.com/u/sri_2005/" target="_blank"><img src="./Leetcode.jpg" alt="LeetCode"></a>
-          <a href="https://github.com/Subramani2005" target="_blank"><img src="./github.jpeg" alt="GitHub"></a>
-        </div>
-        <button id="toggle-btn" class="toggle-btn">🌙</button>
-      </div>
-    </header>
 
-    <section class="card">
-      <h2>About Me</h2>
-      <p>
-        Motivated and detail-oriented aspiring Machine Learning Engineer with a strong grasp of core ML/DL concepts...
-      </p>
-    </section>
-
-    <section class="card">
-      <h2>Educational Qualifications</h2>
-      <ul class="edu-list">
-        <li><h3>Class 12: <span class="highlight">93.4%</span></h3><p>Maharishi Vidya Mandir Sr. Sec. School...</p></li>
-        <li><h3>B.Tech, Information Technology</h3><p>Aug 2023 – Aug 2027</p><p>SASTRA University, Tanjore</p><p>CGPA: <span class="highlight">8.8000</span></p></li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Skills</h2>
-      <ul>
-        <li><strong>Languages:</strong> C, C++, JAVA, Python, SQL</li>
-        <li><strong>Tools:</strong> Microsoft Power BI, Web Dev</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Projects</h2>
-      <div class="project">
-        <h3>Sentiment Analyzer</h3>
-        <p>A basic sentiment analyzer for IMDB reviews...</p>
-        <a href="https://first-app-for-sentiment-analysis.onrender.com" target="_blank" class="btn">View Project</a>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Certifications</h2>
-      <div class="certification">
-        <img src="./cisco.png" alt="Cisco Logo">
-        <div class="certification-content">
-          <h3>Introduction to Data Science – Cisco</h3>
-          <a href="https://www.credly.com/badges/e30c0bfe-04d6-4d62-9ccf-47524acd7c59/linked_in_profile" target="_blank" class="btn">View Certificate</a>
-        </div>
-      </div>
-      <div class="certification">
-        <img src="./cisco.png" alt="Cisco Logo">
-        <div class="certification-content">
-          <h3>Data Analytics Essentials – Cisco</h3>
-          <a href="https://www.linkedin.com/in/s-subramanian-3660bb301/overlay/1750583631054/single-media-viewer" target="_blank" class="btn">View Certificate</a>
-        </div>
-      </div>
-    </section>
+<header>
+  <div class="name-block">
+    <h1>Subramanian S</h1>
+    <p>AI Engineer · ML Engineer · Backend Developer</p>
   </div>
+  <div class="header-right">
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/s-subramanian-3660bb301" target="_blank" title="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://github.com/Subramani2005" target="_blank" title="GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+      <a href="https://leetcode.com/u/sri_2005/" target="_blank" title="LeetCode">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+      </a>
+    </div>
+    <button class="toggle-btn" id="toggle-btn" title="Toggle theme">🌙</button>
+  </div>
+</header>
 
-  <script src="./main.js"></script>
+<main>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="section-label">About</div>
+    <p class="about-text">
+      Final year B.Tech (IT) student at SASTRA University (CGPA 8.80/10) with hands-on experience building production-grade AI systems — from fine-tuned LLMs and multi-agent legal pipelines to hybrid neural search architectures and real-time ML inference APIs. I love the intersection of rigorous ML theory and things that actually ship.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>Languages</h4>
+        <p>Python, C, C++, Java, SQL</p>
+      </div>
+      <div class="skill-card">
+        <h4>AI / ML</h4>
+        <p>LLMs, LoRA, PEFT, RAG, NLP, Hybrid Neural Search, Cross-Encoder Reranking</p>
+      </div>
+      <div class="skill-card">
+        <h4>Frameworks</h4>
+        <p>FastAPI, Hugging Face Transformers, Scikit-learn, MCP, Qdrant</p>
+      </div>
+      <div class="skill-card">
+        <h4>Tools</h4>
+        <p>Power BI, Tableau, GitHub, Render, Kaggle</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <div class="section-label">Projects</div>
+
+    <!-- PSR -->
+    <div class="project-card">
+      <div class="proj-header">
+        <h3>PSR: Precedents and Statutes Retrieval System</h3>
+        <span class="badge">New</span>
+      </div>
+      <p class="proj-sub">Production-Grade Hybrid Neural Search &amp; Cross-Encoder Reranking for Legal Tech</p>
+      <ul>
+        <li>Two-stage retrieval pipeline: Stage 1 uses <code>BAAI/bge-m3</code> for simultaneous dense (1024-dim semantic) and sparse (keyword) vector computation via Qdrant's Dual Prefetch strategy</li>
+        <li>Stage 2 applies Cross-Encoder reranking (<code>BAAI/bge-reranker-base</code>) via joint query-document self-attention — producing highly accurate, relevance-sorted legal contexts</li>
+        <li>Resolves fundamental limitations of rigid BM25 keyword search by capturing synonym variation and deep statutory nuance</li>
+        <li>FastAPI backend + GitHub Pages interactive frontend deployed end-to-end</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">FastAPI</span>
+        <span class="tag">Qdrant</span>
+        <span class="tag">bge-m3</span>
+        <span class="tag">Cross-Encoder</span>
+        <span class="tag">Hybrid Search</span>
+        <span class="tag">GitHub Pages</span>
+      </div>
+      <div class="project-links">
+        <a href="https://subramani2005.github.io/PSR-Precedents-and-Statutes-Retrieval/" target="_blank" class="btn-link">Live Demo</a>
+      </div>
+    </div>
+
+    <!-- Multi-Agent -->
+    <div class="project-card">
+      <div class="proj-header">
+        <h3>Multi-Agent Legal AI System</h3>
+        <span class="badge" style="background: #fef3c7; color: #92400e;">Ongoing</span>
+      </div>
+      <p class="proj-sub">Meta Llama 3 70B · LoRA · PEFT · RAG · MCP</p>
+      <ul>
+        <li>3-agent architecture (Decision Support, Generic Legal Assistant, Family Law) that classifies judicial documents using rhetorical role labels — reducing manual triage time by an estimated 70%+</li>
+        <li>Meta Llama 3 70B with structured JSON knowledge base auto-generates case summaries targeting sub-5s inference</li>
+        <li>Domain chatbots via fine-tuning + RAG on curated legal datasets — high accuracy with no hallucination</li>
+        <li>MCP for seamless parallel agent coordination in a single pipeline</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">Llama 3 70B</span>
+        <span class="tag">LoRA</span>
+        <span class="tag">PEFT</span>
+        <span class="tag">RAG</span>
+        <span class="tag">MCP</span>
+        <span class="tag">Multi-Agent</span>
+      </div>
+    </div>
+
+    <!-- Sentiment -->
+    <div class="project-card">
+      <div class="proj-header">
+        <h3>Sentiment Analyzer</h3>
+        <span class="badge" style="background: #dcfce7; color: #166534;">Live</span>
+      </div>
+      <p class="proj-sub">Naïve Bayes · TF-IDF · IMDB 50K · Render</p>
+      <ul>
+        <li>Multinomial Naïve Bayes + TF-IDF classifier on IMDB 50K dataset — 87% binary sentiment accuracy</li>
+        <li>Full-stack inference API deployed on Render with &lt;200ms response latency</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">Naïve Bayes</span>
+        <span class="tag">TF-IDF</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Render</span>
+      </div>
+      <div class="project-links">
+        <a href="https://first-app-for-sentiment-analysis.onrender.com" target="_blank" class="btn-link">Live Demo</a>
+      </div>
+    </div>
+
+    <!-- Diabetes -->
+    <div class="project-card">
+      <div class="proj-header">
+        <h3>Diabetes Prediction System</h3>
+      </div>
+      <p class="proj-sub">Decision Tree · Single-layer Perceptron · Pima Indian Diabetes Dataset</p>
+      <ul>
+        <li>Benchmarked Decision Tree Regressor, Decision Tree Classifier, and Single-layer Perceptron on Pima Indian Diabetes dataset</li>
+        <li>Optimal model achieved ~78% classification accuracy — reproducible baseline for clinical decision support</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">Decision Tree</span>
+        <span class="tag">Perceptron</span>
+        <span class="tag">Scikit-learn</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Subramani2005" target="_blank" class="btn-link">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-card">
+      <div>
+        <h3>Bachelor of Technology — Information Technology</h3>
+        <p>SASTRA University, Thanjavur</p>
+        <p>Aug 2023 – Aug 2027 (Expected)</p>
+      </div>
+      <div class="cgpa">8.80</div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <div class="section-label">Certifications</div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <span>Cisco – Data Analytics Essentials</span>
+        <a href="https://www.linkedin.com/in/s-subramanian-3660bb301/overlay/1750583631054/single-media-viewer" target="_blank">View ↗</a>
+      </div>
+      <div class="cert-item">
+        <span>Cisco – Introduction to Data Science</span>
+        <a href="https://www.credly.com/badges/e30c0bfe-04d6-4d62-9ccf-47524acd7c59/linked_in_profile" target="_blank">View ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>subbumaharishi@gmail.com · +91 7397539530</p>
+</footer>
+
+<script>
+  const btn = document.getElementById('toggle-btn');
+  const saved = localStorage.getItem('theme');
+  if (saved) { document.documentElement.setAttribute('data-theme', saved); btn.textContent = saved === 'dark' ? '☀️' : '🌙'; }
+  btn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    btn.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+</script>
 </body>
 </html>
